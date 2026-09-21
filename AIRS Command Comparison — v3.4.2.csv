@@ -1,0 +1,15 @@
+﻿Dimension,🌆 RUN AIRS (EOD),☀️ RUN AIRS MIDDAY,🔬 RUN AIRS DEEP DIVE
+**Purpose**,• Strategic validation • Full portfolio decisions,• Tactical tape reading • React to live price/volume,• Single-stock forensic audit • Validate or kill a thesis
+**Trigger**,"• `RUN AIRS [Date]` • Evening, ~5:30 PM WIB",• `RUN AIRS MIDDAY [Date]` • ~12:30 PM WIB,"• `RUN AIRS DEEP DIVE [Stock]` • Evening, on demand"
+**Position size**,• Standard **5%** per position,• Probe **2%** max per position,• Strategic sizing (case by case)
+**Data vintage**,• Today's EOD broker summary (confirmed) • Daily charts (confirmed close),• Live price + volume (leading) • **D-1** broker summary = context only • 7-day broker summary = validation baseline,• Daily + **weekly + monthly** charts • 1M + 7D + 1D broker summaries
+**Entry anchor**,• **POC** (evening anchor) • Avg foreign accumulation price,• **VWAP** (midday anchor) • Session average if POC unavailable,• Monthly POC vs Weekly POC vs current price • Full anchor hierarchy
+**Charts used**,• Daily timeframe,• **1H intraday** timeframe replaces daily,• All timeframes stacked (1D/1W/1M)
+**Macro read**,"• EOD closes (indices, commodities, FX)","• Midday snapshot: IHSG intraday, US futures, live commodities",• Inherits EOD macro of the day
+**Sector read**,• EOD sector performance ranking,• Intraday leaders/laggards,• Sector context for the single stock
+**Broker data role**,• **Confirmation signal** — today's flow read against 7D baseline,• **Lagging context** — D-1 summary + Top Value ranking as foreign-flow proxy,• **Phase classification** — who accumulated/distributed per timeframe
+**Decision authority**,• Can open full positions • Can cancel midday probes (evening veto),"• Can open probes only • Can cancel EOD theses (midday veto) • Every probe tagged ""Re-evaluate at EOD""",• No direct execution — outputs BUY NOW / WAIT FOR PULLBACK trigger with conditions
+**Scope**,• Whole shortlist (8–10) + holdings,• Whole shortlist + holdings,• One stock only
+**Unique outputs**,• Quick Scan + Detail Cards • Portfolio allocation • Entry/Risk checklists,"• Same format, ""Re-eval at EOD"" tag on every card",• Phase tables (1M/7D) • Avg accum/dist price per broker type • POC trend analysis • Tactical trigger level
+**Exit/cancellation rule**,• Evening thesis → can be vetoed by next midday tape,"• Probe contradicted by EOD data → exit at next open, regardless of P\&L",• Verdict feeds the next EOD/midday run
+**Failure handling**,• Cancellation = capital saved,• Cancellation = capital saved,• Invalidation logged to case-study library

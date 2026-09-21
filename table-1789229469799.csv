@@ -1,0 +1,6 @@
+﻿Feature,Status for you
+**Agent Swarm**,"✅ Available — Moderato, Allegretto, and Allegro tiers all have access (note: swarm tasks consume several times the credits of a normal Agent task, so use it for big parallel jobs)"
+**Kimi Claw one-click deploy**,"✅ Available — one-click deployment requires Allegretto or above. You get the cloud agent with long-term memory, 40GB sandbox, and Kimi K2.6 (switchable to K3) running 24/7"
+**Kimi Code high-speed mode**,"✅ Available — you can use `kimi-for-coding-highspeed` (5–6× faster output, ~3× credit cost). Switch with `/model` in the CLI or the model dropdown in VS Code"
+**Scheduled tasks / Goal Mode / Dashboard**,"✅ Available in the desktop app's Work mode (just remember: scheduled tasks run locally, so your computer needs to stay on/awake)"
+**Finance & data plugins**,✅ Available — installable from the plugin marketplace

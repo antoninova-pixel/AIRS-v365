@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NUSANTARA ALPHA — DETAIL CARD · 18 SEP 2026 · EOD (BINDING)</title>
+<style>
+:root{
+  --bg:#E9EDF4; --paper:#FFFFFF; --ink:#0E1525; --muted:#3B475B; --faint:#66738A;
+  --line:#C5CEDD; --line2:#DCE2EC;
+  --navy:#1A3570; --navy-t:#D9E4F7;
+  --buy:#1E8449;   --buy-t:#D9F1E3;   --buy-d:#0A582C;
+  --hold:#2563C0;  --hold-t:#DAE8FB;  --hold-d:#123F86;
+  --watch:#D18800; --watch-t:#FFE9B8; --watch-d:#663F00;
+  --queue:#6541C8; --queue-t:#E4DBFA; --queue-d:#3F248C;
+  --sell:#C0332A;  --sell-t:#F9DAD6;  --sell-d:#8A1A12;
+  --gray-t:#E0E5EE; --gray-d:#2F3A4D;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{font-family:Inter,"Segoe UI","Noto Sans","DejaVu Sans",Arial,sans-serif;font-size:12.5px;line-height:1.45;color:var(--ink);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.sheet{width:1120px;margin:0 auto;padding:18px 18px 16px}
+
+/* header */
+.top{background:var(--paper);border:1px solid var(--line);border-top:5px solid var(--navy);border-radius:8px;padding:14px 18px 13px}
+.top h1{font-size:20px;font-weight:800;letter-spacing:.2px;color:var(--navy)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.chip{font-size:11.5px;padding:3px 10px;border-radius:999px;background:var(--gray-t);color:var(--gray-d);border:1px solid #AEB9CC;font-weight:600}
+.chip.warn{background:var(--watch-t);color:var(--watch-d);border-color:var(--watch);font-weight:700}
+
+/* section heads */
+.sec{margin:20px 0 9px;padding:8px 14px;border-radius:6px;font-size:13px;font-weight:800;border-left:6px solid var(--c);background:var(--t);color:var(--d)}
+.sec small{font-size:11.5px;font-weight:700;margin-left:4px}
+.sec.navy{--c:var(--navy);--t:var(--navy-t);--d:var(--navy)}
+.sec.buy{--c:var(--buy);--t:var(--buy-t);--d:var(--buy-d)}
+.sec.hold{--c:var(--hold);--t:var(--hold-t);--d:var(--hold-d)}
+.sec.sell{--c:var(--sell);--t:var(--sell-t);--d:var(--sell-d)}
+.sec.watch{--c:var(--watch);--t:var(--watch-t);--d:var(--watch-d)}
+
+/* quick scan table */
+.tbl{background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+th{font-size:10.5px;font-weight:800;color:var(--navy);text-align:left;padding:8px 8px;background:#E8EDF6;border-bottom:2px solid var(--navy);letter-spacing:.3px}
+td{padding:7px 8px;vertical-align:top;border-bottom:1px solid var(--line2);font-size:12px}
+tr:last-child td{border-bottom:0}
+tbody tr:nth-child(even) td{background:#F3F6FB}
+td:first-child,th:first-child{padding-left:12px}
+td:nth-child(2){white-space:nowrap}
+td:last-child,th:last-child{padding-left:10px;padding-right:12px}
+tbody td:first-child{border-left:5px solid var(--rail,#C9D1DE)}
+tr.r-buy{--rail:var(--buy)} tr.r-hold{--rail:var(--hold)} tr.r-defer,tr.r-watch{--rail:var(--watch)}
+tr.r-queue{--rail:var(--queue)} tr.r-avoid,tr.r-exit{--rail:var(--sell)}
+.tk{font-weight:800;font-size:13px}
+.held{font-size:11px;color:var(--gray-d);margin-left:2px}
+.bdg{display:inline-block;margin-top:2px;font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:4px;border:1px solid}
+.bdg.FOREIGN{color:var(--hold-d);background:var(--hold-t);border-color:var(--hold)}
+.bdg.INSIDER{color:var(--queue-d);background:var(--queue-t);border-color:var(--queue)}
+.sc{font-size:14px;font-weight:800}
+.dl{font-style:normal;font-size:11px;color:var(--muted);margin-left:3px}
+.pill{display:inline-block;font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:5px;white-space:nowrap;border:1px solid}
+.pill.buy{background:var(--buy-t);color:var(--buy-d);border-color:var(--buy)}
+.pill.hold{background:var(--hold-t);color:var(--hold-d);border-color:var(--hold)}
+.pill.defer,.pill.watch{background:var(--watch-t);color:var(--watch-d);border-color:var(--watch)}
+.pill.queue{background:var(--queue-t);color:var(--queue-d);border-color:var(--queue)}
+.pill.avoid{background:var(--sell-t);color:var(--sell-d);border-color:var(--sell)}
+.pill.exit{background:var(--sell);color:#fff;border-color:var(--sell)}
+.sg{font-weight:700;font-size:11.5px;white-space:nowrap}
+.sg.ok{color:var(--buy-d)} .sg.warn{color:var(--watch-d)} .sg.acc{color:var(--buy-d)}
+.sg.dist{color:var(--sell-d)} .sg.mix{color:var(--gray-d)}
+.trk{font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:4px;background:var(--gray-t);color:var(--gray-d)}
+.trk.EVT{background:var(--queue-t);color:var(--queue-d)}
+.legend{margin:0;padding:9px 14px 10px;border-top:2px solid var(--line);background:#E8EDF6;color:var(--gray-d);font-size:10.5px;line-height:1.5}
+.legend p+p{margin-top:2px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch}
+.card{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--c);border-radius:8px;overflow:hidden}
+.card.wide{grid-column:1/-1}
+.card.buy{--c:var(--buy);--t:var(--buy-t);--d:var(--buy-d)}
+.card.hold{--c:var(--hold);--t:var(--hold-t);--d:var(--hold-d)}
+.card.watch{--c:var(--watch);--t:var(--watch-t);--d:var(--watch-d)}
+.card.queue{--c:var(--queue);--t:var(--queue-t);--d:var(--queue-d)}
+.card header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 12px;background:var(--t);border-bottom:2px solid var(--c)}
+.card h3{font-size:13px;font-weight:800;color:var(--d)}
+.card .tag{font-size:10.5px;font-weight:800;padding:2px 9px;border-radius:999px;background:#fff;color:var(--d);border:1px solid var(--c);white-space:nowrap}
+dl>div{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:5px 12px;border-bottom:1px solid var(--line2)}
+dl>div:last-child{border-bottom:0}
+dl>div:nth-child(even){background:#F3F6FB}
+dt{font-weight:800;color:var(--navy);font-size:11.5px}
+dd{font-size:12px}
+dl>div.b dd{font-weight:800}
+.note{margin:9px 2px 0;color:var(--gray-d);font-size:10.5px;line-height:1.5}
+
+/* sell box */
+.none{background:var(--sell-t);border:1.5px dashed var(--sell);border-radius:8px;padding:11px 14px;color:var(--sell-d);font-size:12px}
+.none b{font-weight:800}
+
+/* macro */
+.scen{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sc-card{border-radius:8px;padding:11px 13px;border:1px solid var(--line);border-top:5px solid var(--c);background:var(--t);color:var(--ink)}
+.sc-card h4{font-size:13px;font-weight:800;color:var(--d);margin-bottom:5px}
+.sc-card p{font-size:12px;white-space:pre-line}
+.sc-card.s1{--c:var(--hold);--t:var(--hold-t);--d:var(--hold-d)}
+.sc-card.s2{--c:var(--watch);--t:var(--watch-t);--d:var(--watch-d)}
+.sc-card.s3{--c:var(--sell);--t:var(--sell-t);--d:var(--sell-d)}
+.movers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.mv{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:9px 13px;font-size:12px}
+.mv b{display:block;font-size:12px;font-weight:800;margin-bottom:2px}
+.mv.up b{color:var(--buy-d)} .mv.dn b{color:var(--sell-d)}
+.pivot{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pv{background:var(--watch-t);border:1px solid var(--watch);border-radius:8px;padding:9px 13px;font-size:12px;color:#412800}
+.pv b{font-weight:800;color:var(--watch-d)}
+.pv.fired{background:var(--sell-t);border-color:var(--sell);color:#560F09}
+.pv.fired b{color:var(--sell-d)}
+
+/* footer */
+.foot{margin-top:16px;display:flex;justify-content:space-between;gap:16px;padding:9px 14px;border-radius:6px;background:var(--navy-t);color:var(--navy);font-size:11px;font-weight:600}
+</style>
+</head>
+<body>
+<main class="sheet">
+
+
+
+
+<section class="top">
+  <h1>NUSANTARA ALPHA — DETAIL CARD · 18 SEP 2026 · EOD (BINDING)</h1>
+  <div class="chips"><span class="chip ">NOVA v1.0</span><span class="chip ">IDX Swing 3d–6w</span><span class="chip warn">Regime: S2 STRESS holding</span><span class="chip warn">USD/IDR 17,813 — 17,850 freeze gate 0.21% away</span><span class="chip warn">BI RDG Tue–Wed gate ACTIVE (fresh risk ≤10–12% pre-decision)</span><span class="chip ">Trump–Xi Thu</span><span class="chip ">BoJ +25bp done, benign</span></div>
+</section>
+
+<h2 class="sec navy">1 · QUICK SCAN <small>(ALL — BINDING)</small></h2>
+<div class="tbl">
+<table>
+  <colgroup><col style="width:120px"><col style="width:88px"><col style="width:120px"><col style="width:92px"><col style="width:86px"><col style="width:200px"><col><col style="width:68px"></colgroup>
+  <thead><tr><th>STOCK</th><th>SCORE (Δ)</th><th>VERDICT</th><th>CLASS</th><th>SIGNAL</th><th>FOREIGN FLOW</th><th>ANCHOR (DAY AVG VS CLOSE)</th><th>TRACK</th></tr></thead>
+  <tbody>
+  
+  <tr class="r-hold">
+    <td><span class="tk">PTBA</span> <span class="held">(held)</span><br><span class="bdg FOREIGN">FOREIGN</span></td>
+    <td><span class="sc">4.2</span><i class="dl">=</i></td>
+    <td><span class="pill hold">HOLD</span></td>
+    <td>BIG CAP B</td>
+    <td><span class="sg warn">Acc ⚠</span></td>
+    <td>AK top-seller 29.3B</td>
+    <td>Day avg 3,104 — close 3,090 = −0.5% below (mixed cell, adds blocked)</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-buy">
+    <td><span class="tk">ANTM</span><br><span class="bdg FOREIGN">FOREIGN</span></td>
+    <td><span class="sc">4.2</span><i class="dl">=</i></td>
+    <td><span class="pill buy">MOD BUY</span></td>
+    <td>BIG CAP A</td>
+    <td><span class="sg ok">Acc ✓</span></td>
+    <td>AK +139.8B top buyer · net 196.1B · NFB streak 4</td>
+    <td>Day avg 3,312 — close 3,340 = +0.8% above (no-chase 3,310 → pullback-only)</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-buy">
+    <td><span class="tk">MBMA</span><br><span class="bdg FOREIGN">FOREIGN</span></td>
+    <td><span class="sc">3.9</span><i class="dl">new</i></td>
+    <td><span class="pill buy">MOD BUY</span></td>
+    <td>BIG CAP B</td>
+    <td><span class="sg ok">Acc ✓</span></td>
+    <td>AK 32B top buyer · value 126B</td>
+    <td>Day avg 535 — close 545 = +1.9% (inside ≤2% band, but fresh name = ladder)</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-defer">
+    <td><span class="tk">SINI</span></td>
+    <td><span class="sc">4.0</span><i class="dl">= cap</i></td>
+    <td><span class="pill defer">WATCH-DEFER</span></td>
+    <td>BIG CAP B</td>
+    <td><span class="sg warn">Acc ⚠</span></td>
+    <td>NFF 1W −35.6B</td>
+    <td>Day avg 17,011 — close 16,900 ≈ anchor; 17% above chase cap — market entry forbidden</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-defer">
+    <td><span class="tk">ULTJ</span></td>
+    <td><span class="sc">3.9</span><i class="dl">cap</i></td>
+    <td><span class="pill defer">WATCH-DEFER</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg warn">Acc ⚠</span></td>
+    <td>NFB streak 9 (news public → retired to STD)</td>
+    <td>Day avg 2,043 — close 2,060 = +0.8%; RSI 89.8 = G5 fail, vertical tape</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-buy">
+    <td><span class="tk">CUAN</span></td>
+    <td><span class="sc">3.8</span><i class="dl">=</i></td>
+    <td><span class="pill buy">MOD BUY ½</span></td>
+    <td>BIG CAP B</td>
+    <td><span class="sg dist">Dist ✗</span></td>
+    <td>NFF 1W −42.2B</td>
+    <td>Day avg 950 — close 925 = −2.6% (in ladder 915–925; today&#39;s loser → yellow)</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-watch">
+    <td><span class="tk">BRMS</span></td>
+    <td><span class="sc">3.6</span><i class="dl">↓ (4.2)</i></td>
+    <td><span class="pill watch">WATCH</span></td>
+    <td>BIG CAP B</td>
+    <td><span class="sg dist">Dist ✗</span></td>
+    <td>AK sold 131.4B · ZP bought 187.3B</td>
+    <td>Day avg 720 — close 720 = anchor; foreign evidence broke → downgrade · ladder 690–705 stays armed, stop 660</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-watch">
+    <td><span class="tk">ERAA</span><br><span class="bdg FOREIGN">FOREIGN</span></td>
+    <td><span class="sc">3.4</span><i class="dl">=</i></td>
+    <td><span class="pill watch">WATCH</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg mix">Mixed</span></td>
+    <td>—</td>
+    <td>Day avg 626 — close 625; re-arm 575–585 only · RSI 73</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-queue">
+    <td><span class="tk">ARCI</span><br><span class="bdg INSIDER">INSIDER</span></td>
+    <td><span class="sc">3.3</span><i class="dl">new</i></td>
+    <td><span class="pill queue">WHY QUEUE</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg acc">Acc</span></td>
+    <td>NFB streak 6, no public news · CC 17.5B buyer</td>
+    <td>Day avg 1,375 — close 1,380 ≈ anchor; T2 day 1 · insider 3M +65.8%</td>
+    <td><span class="trk EVT">EVT</span></td>
+  </tr>
+  
+  <tr class="r-watch">
+    <td><span class="tk">PTRO</span></td>
+    <td><span class="sc">3.2</span><i class="dl">=</i></td>
+    <td><span class="pill watch">WATCH</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg mix">Mixed</span></td>
+    <td>—</td>
+    <td>Day avg 5,418 — close 5,325 flat &lt; day-avg — 2nd-day confirm FAILED (5,625 → 5,325)</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-queue">
+    <td><span class="tk">SRTG</span><br><span class="bdg INSIDER">INSIDER</span></td>
+    <td><span class="sc">3.1</span><i class="dl">new</i></td>
+    <td><span class="pill queue">WHY QUEUE</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg mix">Mixed</span></td>
+    <td>Thin (4.1–6.0B value, marginal)</td>
+    <td>Day avg 1,814 — close 1,845 = +1.7%; T3: controller buy 15/16/17-Sep</td>
+    <td><span class="trk EVT">EVT</span></td>
+  </tr>
+  
+  <tr class="r-avoid">
+    <td><span class="tk">INET</span></td>
+    <td><span class="sc">2.9</span><i class="dl">↓ (3.2)</i></td>
+    <td><span class="pill avoid">AVOID</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg dist">Dist ✗</span></td>
+    <td>NFF −25.8B</td>
+    <td>Day avg 335 — close 332 = −1.8%; cut documented: 133B churn, sponsorship unproven</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-avoid">
+    <td><span class="tk">INCO</span></td>
+    <td><span class="sc">2.9</span><i class="dl">=</i></td>
+    <td><span class="pill avoid">AVOID</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg dist">Dist ✗</span></td>
+    <td>—</td>
+    <td>Close 4,860 (+3.85%) — pop does NOT revive dead ladder</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-avoid">
+    <td><span class="tk">TEBE</span></td>
+    <td><span class="sc">2.8</span><i class="dl">=</i></td>
+    <td><span class="pill avoid">AVOID</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg dist">Dist — trap ✗</span></td>
+    <td>None</td>
+    <td>Fade 2,340 → 2,080 confirmed; insider SELL @2,130 on 18-Sep</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  <tr class="r-exit">
+    <td><span class="tk">JARR</span></td>
+    <td><span class="sc">—</span></td>
+    <td><span class="pill exit">EXIT LAW</span></td>
+    <td>MED CAP C</td>
+    <td><span class="sg dist">✗</span></td>
+    <td>—</td>
+    <td>Close 3,600 (−14.1%) &lt; stop 3,700 — market exit Mon, no arbitration</td>
+    <td><span class="trk STD">STD</span></td>
+  </tr>
+  
+  </tbody>
+</table>
+<div class="legend"><p>[FOREIGN] = strongest foreign-print member · [INSIDER] = strongest insider-print member</p><p>Persistence Board: ARCI (T2) + SRTG (T3) in WHY QUEUE — verdicts due Tue EOD (max 2 sessions) · ULTJ retired to STD (news public)</p><p>Card law: green = MOD BUY/HIGH BUY · blue = HOLD keep · red = HOLD sell · yellow = capped ≥3.8 or Persistence Board · &lt;3.8 non-persistence = no card</p><p>Field law: TOP BUYS = Entry Zone/Anchor/Entry Quality/Size/Stop/TP/Window/Thesis/Key Risk/Re-Evaluate · HOLDINGS = Action/Anchor/Smart Money/Size/Stop/TP/Window/Thesis/Key Risk/Re-Evaluate · WATCHLIST = Why/Entry Zone/Anchor/Entry Quality/Size/Stop/TP/Window/Thesis/Key Risk/Re-Evaluate</p></div>
+</div>
+
+<h2 class="sec buy">2 · TOP BUYS <small>— MOD BUY / HIGH BUY (≥3.8 · NOT BARBELL-WEAK · NOT TODAY&#39;S LOSERS)</small></h2>
+<div class="grid">
+<article class="card buy">
+  <header><h3>ANTM · MOD BUY 4.2 · FOREIGN</h3><span class="tag">FULL · BIG CAP A ✓</span></header>
+  <dl>
+    <div><dt>Entry Zone</dt><dd>Pullback 3,200–3,240 (Opt) · 3,280 (Acceptable)</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 3,312 — close 3,340 = +0.8% above → no-chase 3,310, pullback-only</dd></div>
+    <div><dt>Entry Quality</dt><dd>A− · AK 139.8B top buyer · NFB streak 4 · net value 196.1B</dd></div>
+    <div><dt>Size</dt><dd>FULL</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>3,050 (LAW)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>3,450 (+6.5% from Opt) / 3,700</dd></div>
+    <div><dt>Window</dt><dd>SWING · ATR 107 (TP1 = 2.1× ATR from ladder)</dd></div>
+    <div><dt>Thesis</dt><dd>Foreign accumulation + Trump–Xi critical-minerals channel Thu</dd></div>
+    <div><dt>Key Risk</dt><dd>IDR breaks 17,850 → all fresh entries freeze</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>Tue EOD, post-RDG</dd></div>
+    
+  </dl>
+</article>
+
+<article class="card buy">
+  <header><h3>MBMA · MOD BUY 3.9 · FOREIGN</h3><span class="tag">HALF · BIG CAP B ✓</span></header>
+  <dl>
+    <div><dt>Entry Zone</dt><dd>520–535 (ladder only)</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 535 — close 545 = +1.9% (inside ≤2% band, but fresh name = ladder)</dd></div>
+    <div><dt>Entry Quality</dt><dd>B+ · AK 32B top buyer · Acc chip · value 126B</dd></div>
+    <div><dt>Size</dt><dd>HALF</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>500 (LAW)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>575 (+5.6%) / 620</dd></div>
+    <div><dt>Window</dt><dd>SWING · ATR 27.3</dd></div>
+    <div><dt>Thesis</dt><dd>Nickel momentum + AK print + minerals-summit tailwind</dd></div>
+    <div><dt>Key Risk</dt><dd>Single-day momentum after +4.8% pop</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>Wed, post-RDG</dd></div>
+    
+  </dl>
+</article>
+</div>
+
+<h2 class="sec hold">3 · HOLDINGS <small>— KEEP / ADD (score stable or up · not barbell-weak · not today&#39;s losers)</small></h2>
+<div class="grid">
+<article class="card hold wide">
+  <header><h3>PTBA · HOLD 4.2 — KEEP / TRAIL</h3><span class="tag">66 lots @3,050 · STAY</span></header>
+  <dl>
+    <div><dt>Action</dt><dd>Hold — trail, don&#39;t add (close below day-avg, mixed cell)</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 3,104 — close 3,090 = −0.5% below</dd></div>
+    <div><dt>Smart Money</dt><dd>Claim: Acc +44.6B net · Evidence: close 3,090 &lt; day-avg 3,104, AK top-seller 29.3B vs CC/PD domestic buying → mixed, unconfirmed</dd></div>
+    <div><dt>Size</dt><dd>STAY — 66 lots @3,050 (no trim, no add)</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>2,900 (LAW, untouched)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>3,200 / 3,400</dd></div>
+    <div><dt>Window</dt><dd>SWING · ATR 100.4</dd></div>
+    <div><dt>Thesis</dt><dd>Coal + energy leg of S2 barbell; score 4.2 stable, not barbell-weak</dd></div>
+    <div><dt>Key Risk</dt><dd>Brent close &lt;100 reopens trim review (buffer ~3%)</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>Daily · Brent trigger live</dd></div>
+    
+  </dl>
+</article>
+</div>
+
+<h2 class="sec sell">4 · HOLDINGS <small>— SELL / REDUCE (thesis failed · foreign selling · barbell-weak · top losers)</small></h2>
+<div class="none"><b>None held tonight.</b> AMMN already closed (+2.06%, journal 18-Sep) · JARR is not a hold — EXIT LAW fired (close 3,600 &lt; stop 3,700): market exit Monday if still held, no arbitration. Any future holding that fails thesis / foreign-flow / barbell rules lands here as a red card with the sell ladder.</div>
+
+<h2 class="sec watch">5 · WATCHLIST <small>— CAPPED ≥3.8 + PERSISTENCE BOARD (each earns its own card · &lt;3.8 non-persistence = quick scan only)</small></h2>
+<div class="grid">
+<article class="card watch">
+  <header><h3>CUAN · MOD BUY 3.8 — TODAY&#39;S LOSER</h3><span class="tag">HALF max · BIG CAP B</span></header>
+  <dl>
+    <div><dt>Why</dt><dd>MOD BUY 3.8 but today&#39;s loser (−2.12%) + Dist day → probe-only, yellow</dd></div>
+    <div><dt>Entry Zone</dt><dd>915–925 (Opt — price in zone)</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 950 — close 925 = −2.6% below → weak close, HALF probe max</dd></div>
+    <div><dt>Entry Quality</dt><dd>B− · in ladder but Dist chip; NFF 1W −42.2B</dd></div>
+    <div><dt>Size</dt><dd>HALF max</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>870 (LAW)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>1,010 / 1,100</dd></div>
+    <div><dt>Window</dt><dd>SWING · ATR 54.4</dd></div>
+    <div><dt>Thesis</dt><dd>Confirmed cell from 17-Sep (AK 26.9B #1 @936) still open → pullback entry only</dd></div>
+    <div><dt>Key Risk</dt><dd>Dist chip + NFF −42.2B; 915 break on volume = ladder wrong</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>Daily</dd></div>
+    
+  </dl>
+</article>
+
+<article class="card watch">
+  <header><h3>SINI · 4.0 — CAPPED (CHASE CAP)</h3><span class="tag">NO CHASE</span></header>
+  <dl>
+    <div><dt>Why</dt><dd>4.0 ≥3.8 but 17% above chase cap + NFF 1W −35.6B = distribution at highs → capped</dd></div>
+    <div><dt>Entry Zone</dt><dd>Re-arm 15,900–16,200 (≈0.7× ATR pullback) · NO CHASE</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 17,011 — close 16,900 ≈ anchor</dd></div>
+    <div><dt>Entry Quality</dt><dd>C at market / A− only inside re-arm zone</dd></div>
+    <div><dt>Size</dt><dd>HALF (if ladder fills)</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>15,000 (if ladder fills)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>17,800 / 19,000</dd></div>
+    <div><dt>Window</dt><dd>SWING · ATR 1,134</dd></div>
+    <div><dt>Thesis</dt><dd>S3-leg momentum leader; move is real, entry price is not</dd></div>
+    <div><dt>Key Risk</dt><dd>17% above old chase cap = vertical tape, mean-reversion risk</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>On zone touch only</dd></div>
+    
+  </dl>
+</article>
+
+<article class="card watch">
+  <header><h3>ULTJ · 3.9 — CAPPED (G5 FAIL)</h3><span class="tag">NO CHASE</span></header>
+  <dl>
+    <div><dt>Why</dt><dd>3.9 ≥3.8 but G5 fail — RSI 89.8 vertical tape → capped</dd></div>
+    <div><dt>Entry Zone</dt><dd>Armed 1,860–1,920 · NO CHASE</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 2,043 — close 2,060 = +0.8% above, strong close</dd></div>
+    <div><dt>Entry Quality</dt><dd>C at market / B+ inside armed zone after RSI cools &lt;75</dd></div>
+    <div><dt>Size</dt><dd>HALF (if ladder fills)</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>1,780 (if ladder fills)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>2,190 (52w high) / 2,400</dd></div>
+    <div><dt>Window</dt><dd>FAST-to-SWING · ATR 90.2</dd></div>
+    <div><dt>Thesis</dt><dd>NFB streak 9 + RUPS 27-Oct catalyst; news public → STD rules</dd></div>
+    <div><dt>Key Risk</dt><dd>Post-news blow-off risk; rights-issue overhang @2,150</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>RSI &lt;75 or zone touch · RUPS 27-Oct = thesis date</dd></div>
+    
+  </dl>
+</article>
+
+<article class="card queue">
+  <header><h3>ARCI · 3.3 — PERSISTENCE BOARD (T2)</h3><span class="tag">WHY QUEUE · EVT</span></header>
+  <dl>
+    <div><dt>Why</dt><dd>3.3 &lt;3.8 but on Persistence Board — T2: NFB streak 6, no public news (AIRS v2 persistence law)</dd></div>
+    <div><dt>Entry Zone</dt><dd>None until verdict promotes to EVENT TRACK</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 1,375 — close 1,380 ≈ anchor</dd></div>
+    <div><dt>Entry Quality</dt><dd>Unrated — WHY QUEUE day 1 of 2; evidence: CC 17.5B buyer · Acc chip · insider 3M +65.8%</dd></div>
+    <div><dt>Size</dt><dd>PERSONAL-ONLY ≤2%, half probe (only if promoted)</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>Below accumulation base (set at promotion)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>Set at promotion</dd></div>
+    <div><dt>Window</dt><dd>EVT · ATR 60.4</dd></div>
+    <div><dt>Thesis</dt><dd>Silent foreign streak + insider accumulation = possible pre-news positioning</dd></div>
+    <div><dt>Key Risk</dt><dd>Thin sponsorship — if foreign streak breaks, queue expires</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>Tue EOD (hard deadline)</dd></div>
+    
+  </dl>
+</article>
+
+<article class="card queue wide">
+  <header><h3>SRTG · 3.1 — PERSISTENCE BOARD (T3)</h3><span class="tag">WHY QUEUE · EVT</span></header>
+  <dl>
+    <div><dt>Why</dt><dd>3.1 &lt;3.8 but on Persistence Board — T3: controller Edwin Soeryadjaya bought 15/16/17-Sep consecutive</dd></div>
+    <div><dt>Entry Zone</dt><dd>None until verdict promotes to EVENT TRACK</dd></div>
+    <div><dt>Anchor</dt><dd>Day avg 1,814 — close 1,845 = +1.7%</dd></div>
+    <div><dt>Entry Quality</dt><dd>Unrated — WHY QUEUE day 1 of 2; T3 confirmed from insider log; value 4.1–6.0B marginal liquidity</dd></div>
+    <div><dt>Size</dt><dd>PERSONAL-ONLY ≤2%, half probe (only if promoted)</dd></div>
+    <div class="b"><dt>Stop Loss</dt><dd>Below accumulation base (set at promotion)</dd></div>
+    <div><dt>TP1 / TP2</dt><dd>Set at promotion</dd></div>
+    <div><dt>Window</dt><dd>EVT · thin tape, log-only borderline</dd></div>
+    <div><dt>Thesis</dt><dd>Controller buying 3 consecutive sessions = informed-money signal</dd></div>
+    <div><dt>Key Risk</dt><dd>Thin tape — slippage both ways; controller buys can pause silently</dd></div>
+    <div><dt>Re-Evaluate</dt><dd>Tue EOD (hard deadline)</dd></div>
+    
+  </dl>
+</article>
+</div>
+<p class="note">Quick-scan-only tonight (no card): BRMS 3.6 (ladder 690–705 stays armed per G5-defer law) · ERAA 3.4 · PTRO 3.2 · INET 2.9 · INCO 2.9 · TEBE 2.8 · Standing debts: TLKM fill report (4th escalation — contradiction rule live) · TAPG [BNI] review owed</p>
+
+<h2 class="sec navy">6 · MACRO SCENARIO BARBELL <small>(ADVISORY ONLY — NO SCORE IMPACT)</small></h2>
+<div class="scen">
+  <div class="sc-card s1"><h4>S1 · 25% — Soft-landing / risk-on</h4><p>Winners: BBRI/BMRI (flow returns, still frozen pre-RDG), ERAA
+Losers: —</p></div>
+  <div class="sc-card s2"><h4>S2 · 45% (LEAN) — Stress holding</h4><p>Winners: CUAN, PTBA (energy leg) · ANTM/MBMA (nickel bid) · BRMS hedge
+Losers: IDR-exposed banks (BBRI/BMRI overlay) · foreign-exit names (AMMN done, INCO)</p></div>
+  <div class="sc-card s3"><h4>S3 · 30% — Shock tail</h4><p>Winners: Gold-complex bounce, cash
+Losers: High-beta small caps, extended probes (ULTJ, TEBE)</p></div>
+</div>
+<div class="movers">
+  <div class="mv up"><b>▲ Today Top Gainers</b>NASI +34.5% · TRUE +34.0% · BAJA +25.0% · KICI +24.8% · WAPO +22.8% · BYAN +20.0% (FTSE artifact)</div>
+  <div class="mv dn"><b>▼ Today Top Losers</b>FORU −15.0% · TCPI −15.0% · AGAR −14.8% · JARR −14.1% (stop LAW) · AYLS −12.1% · DOOH −10.9%</div>
+</div>
+<div class="pivot">
+  <div class="pv"><b>Pivot triggers:</b> USD/IDR 17,850 break = freeze all fresh entries · US10Y &gt;5.10% ×2 = S3 freeze · Brent close &lt;100 = PTBA trim review reopens · BI RDG decision Wed · Trump–Xi Thu · BoJ done (+25bp, benign).</div>
+  <div class="pv fired"><b>Fired / LAW:</b> JARR exit at market if held · AMMN closed +2.06% (journal, 42 lots @4,950) — track record 13W/6L/1F · PTBA stop 2,900 · ARCI + SRTG WHY QUEUE verdicts due Tue EOD</div>
+</div>
+
+<footer class="foot"><span>NOVA v1.0 · Nusantara Alpha · EOD BINDING · Stops are LAW · Ladders anchored to day-avg/week-avg, never last price</span><span>Next: 21-Sep Week-Ahead · EOD (BINDING)</span></footer>
+
+</main>
+</body>
+</html>
